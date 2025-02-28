@@ -142,6 +142,13 @@
         alert("An error occurred. Please try again.");
       }
     });
+    function navigateToPage(pageName) {
+  // Use the History API to change the URL without reloading the page
+  history.pushState({}, "", `/${pageName}`);
+
+  // Optionally, you can redirect to the new page
+  window.location.href = `/${pageName}`;
+}
   </script>
 </body>
 </html>
