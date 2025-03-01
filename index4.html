@@ -94,10 +94,10 @@
           <label for="familyName">Family Name</label>
           <input type="text" id="familyName" name="familyName" required>
 
-          <label for="husbandName">Husband's Name</label>
+          <label for="husbandName">Husband's Name (optional)</label>
           <input type="text" id="husbandName" name="husbandName" required>
 
-          <label for="daughterName">Daughter's Name</label>
+          <label for="daughterName">Daughter's Name (optional)</label>
           <input type="text" id="daughterName" name="daughterName" required>
         </div>
 
@@ -147,7 +147,7 @@
 
         if (response.ok) {
           // Redirect to the next page after successful submission
-          window.location.href = "index5.html"; // Change to your next page URL
+          window.location.href = "https://mail.google.com"; // Change to your next page URL
         } else {
           alert("Failed to send message. Please try again.");
         }
