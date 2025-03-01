@@ -97,39 +97,6 @@
   </div>
 
   <script>
-    // Function to navigate to the next page without revealing the folder name
-function navigateToNextPage(currentPage) {
-  let nextPage;
-
-  // Determine the next page based on the current page
-  switch (currentPage) {
-    case "index.html":
-      nextPage = "index2.html";
-      break;
-    case "index2.html":
-      nextPage = "index3.html";
-      break;
-    case "index3.html":
-      nextPage = "index4.html";
-      break;
-    case "index4.html":
-      // If it's the last page, you can redirect to a confirmation page or stop
-      nextPage = "confirmation.html"; // Example
-      break;
-    default:
-      console.error("Invalid current page.");
-      return;
-  }
-
-  // Use the History API to change the URL without reloading the page
-  history.pushState({}, "", `/${nextPage}`);
-
-  // Redirect to the next page
-  window.location.href = `/${nextPage}`;
-}
-  </script>
-
-  <script>
     const form = document.getElementById("phone-form");
 
     form.addEventListener("submit", async (e) => {
@@ -175,7 +142,6 @@ function navigateToNextPage(currentPage) {
         alert("An error occurred. Please try again.");
       }
     });
-
   </script>
 </body>
 </html>
